@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: "auth-service"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/comic_backend_auth_service_db
+    username: postgres
+    password: 1409
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    generate-ddl: true
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: http://localhost:8762
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+server:
+  port: 8762
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+security:
+  key:
+    algorithm: RS256
+    size: 2048
+    jwt:
+      access-token:
+        time-to-live: 1h
+      refresh-token:
+        time-to-live: 30d
+setup:
+  device:
+    fingerprint:
+      name: "@FPRINT@"
+
+
+  cookies:
+    domain: "localhost"
+    path: "/"
+  role:
+    prefix: "ROLE_"
+    super-admin:
+      code: "ROLE_SUPER_ADMIN"
+      name: "super admin"
+  super-admin:
+    username: "admin"
+    password: "admin"

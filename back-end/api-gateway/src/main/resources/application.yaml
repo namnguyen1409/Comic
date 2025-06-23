@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: "api-gateway"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 8761
